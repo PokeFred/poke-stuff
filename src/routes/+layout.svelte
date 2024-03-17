@@ -1,11 +1,17 @@
 <script lang="ts">
     import "../app.css"
     import "@fontsource-variable/nunito"
+    import "highlight.js/styles/github-dark.css"
     import { afterNavigate } from "$app/navigation"
     import type { AfterNavigate } from "@sveltejs/kit"
-    import { AppShell } from "@skeletonlabs/skeleton"
+    import { AppShell, storeHighlightJs } from "@skeletonlabs/skeleton"
+    import hljs from "highlight.js/lib/core"
+    import shell from "highlight.js/lib/languages/shell"
     import { darkmode } from "$stores/darkmode"
     import { theme } from "$stores/theme"
+
+    hljs.registerLanguage("shell", shell)
+    storeHighlightJs.set(hljs)
 
     afterNavigate((event: AfterNavigate): void => {
         const isNewPage: boolean = event.from?.url.pathname !== event.to?.url.pathname
