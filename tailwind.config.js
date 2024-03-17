@@ -23,5 +23,6 @@ export default {
                 preset: ["skeleton"]
             }
         }),
+        forms
     ]
 }
