@@ -1,0 +1,26 @@
+{
+    "name": "poke-stuff",
+    "version": "0.0.0",
+    "type": "module",
+    "private": true,
+    "scripts": {
+        "dev": "vite dev",
+        "build": "vite build",
+        "preview": "vite preview"
+    },
+    "dependencies": {
+        "dotenv": "^16.4.5"
+    },
+    "devDependencies": {
+        "@sveltejs/adapter-vercel": "^5.1.1",
+        "@sveltejs/enhanced-img": "^0.1.9",
+        "@sveltejs/kit": "^2.5.4",
+        "@sveltejs/vite-plugin-svelte": "^3.0.2",
+        "sharp": "^0.33.2",
+        "svelte": "^4.2.12",
+        "tslib": "^2.6.2",
+        "typescript": "^5.4.2",
+        "vite": "^5.1.6",
+        "vite-plugin-mkcert": "^1.17.4"
+    }
+}
