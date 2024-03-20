@@ -12,6 +12,7 @@
     import ts from 'highlight.js/lib/languages/typescript'
     import json from 'highlight.js/lib/languages/json'
     import ini from "highlight.js/lib/languages/ini"
+    import dockerfile from "highlight.js/lib/languages/dockerfile"
     import shell from 'highlight.js/lib/languages/shell'
     import { darkmode } from '$stores/darkmode'
     import { theme } from '$stores/theme'
@@ -22,6 +23,7 @@
     hljs.registerLanguage('ts', ts)
     hljs.registerLanguage('json', json)
     hljs.registerLanguage('ini', ini)
+    hljs.registerLanguage('dockerfile', dockerfile)
     hljs.registerLanguage('shell', shell)
     storeHighlightJs.set(hljs)
 

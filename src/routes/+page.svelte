@@ -168,8 +168,48 @@
         <div class="text-lg">&#x3C;root&#x3E;/vite.config.ts</div>
         <CodeBlock language="ts" code={`import { defineConfig } from "vite"\nimport type { CommonServerOptions } from "vite"\nimport { sveltekit } from "@sveltejs/kit/vite"\nimport { enhancedImages } from "@sveltejs/enhanced-img"\nimport mkcert from "vite-plugin-mkcert"\n\nconst serverConfig: CommonServerOptions = {\n    https: true,\n    host: "localhost",\n    port: 3000,\n    strictPort: true,\n    proxy: {}\n}\n\nexport default defineConfig({\n    server: serverConfig,\n    preview: serverConfig,\n    plugins: [sveltekit(), enhancedImages(), mkcert()]\n})`} />
     </div>
+</div>
+
+<div class="card mx-auto mt-4 max-w-5xl px-10 py-8">
+    <div class="text-3xl underline">Chapter 3 - Hosting with docker</div>
+    <div class="mt-6 text-lg">
+        <div class="underline">Project Structure for this step</div>
+        <div class="ml-0"><b>&#x3C;root&#x3E;</b></div>
+        <div class="ml-4">&#x2502; package.json</div>
+        <div class="ml-4">&#x2502; svelte.config.js</div>
+        <div class="ml-4">&#x2514; vite.config.ts</div>
+    </div>
     <div class="mt-6">
-        <div class="text-lg"></div>
-        <CodeBlock language="ts" code={``} />
+        <div class="text-lg">&#x3C;root&#x3E;/.dockerignore</div>
+        <CodeBlock language="ini" code={`# IDE Stuff\n.vscode/**\n.idea/**\n\n# Folders\nnode_modules/**\n.svelte-kit/**\nbuild/**\n\n# Files\npackage-lock.json\nyarn.lock\npnpm-lock.yaml`} />
+    </div>
+    <div class="mt-6">
+        <div class="text-lg">&#x3C;root&#x3E;/Dockerfile</div>
+        <CodeBlock language="dockerfile" code={`# base setup of the container\nFROM node:21-alpine\nWORKDIR /app\n\n# setup and build the app\nCOPY . .\nRUN npm install\nRUN npm run build\n\n# run the app\nEXPOSE 3000\nCMD ["npm", "start"]`} />
+    </div>
+    <div class="mt-6">
+        <div class="text-lg">Now it's startable from commandline</div>
+        <CodeBlock language="shell" code={`$ docker build --no-cache -t test-project\n$ docker run test-project`} />
     </div>
 </div>
+
+<!--
+<div class="card mx-auto mt-4 max-w-5xl px-10 py-8">
+    <div class="text-3xl underline">Chapter ? - ?</div>
+    <div class="mt-6 text-lg">
+        <div><span class="underline">Project Structure for this step</span> (only the important/needed parts)</div>
+        <div class="ml-0"><b>&#x3C;root&#x3E;</b></div>
+        <div class="ml-4">&#9500; <b>folder-1</b></div>
+        <div class="ml-4">&#9500;&#9472; file-1</div>
+        <div class="ml-4">&#9500; <b>folder-2</b></div>
+        <div class="ml-4">&#9500;&#9472; file-2</div>
+        <div class="ml-4">&#9474;&#x252C; <b>folder-3</b></div>
+        <div class="ml-4">&#9474;&#x2514;&#9472; file-3</div>
+        <div class="ml-4">&#x2514; file-4</div>
+    </div>
+    <div class="mt-6">
+        <div class="text-lg">&#x3C;root&#x3E;/xample-file.ini</div>
+        <CodeBlock language="ini" code={`example=value`} />
+    </div>
+</div>
+-->
