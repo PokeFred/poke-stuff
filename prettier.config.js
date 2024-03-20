@@ -5,31 +5,31 @@ const config = {
     useTabs: false,
     overrides: [
         {
-            files: ["*.js", "*.ts", "*.d.ts", "*.svelte"],
+            files: ['*.js', '*.ts', '*.d.ts', '*.svelte'],
             options: {
                 semi: false,
                 singleQuote: true,
-                quoteProps: "preserve",
-                trailingComma: "all",
+                quoteProps: 'preserve',
+                trailingComma: 'all',
                 bracketSpacing: true,
-                arrowParens: "always",
+                arrowParens: 'always',
             },
         },
         {
-            files: ["*.svelte"],
+            files: ['*.svelte'],
             options: {
                 bracketSameLine: false,
 
                 // prettier-plugin-svelte stuff
-                parser: "svelte",
-                svelteSortOrder: "options-scripts-markup-styles",
+                parser: 'svelte',
+                svelteSortOrder: 'options-scripts-markup-styles',
                 svelteStrictMode: false,
                 svelteAllowShorthand: false,
                 svelteIndentScriptAndStyle: true,
             },
         },
     ],
-    plugins: ["prettier-plugin-svelte", "prettier-plugin-tailwindcss"],
+    plugins: ['prettier-plugin-svelte', 'prettier-plugin-tailwindcss'],
 }
 
 export default config
