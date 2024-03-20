@@ -6,20 +6,23 @@
     import type { AfterNavigate } from '@sveltejs/kit'
     import { AppShell, storeHighlightJs } from '@skeletonlabs/skeleton'
     import hljs from 'highlight.js/lib/core'
-    import shell from 'highlight.js/lib/languages/shell'
-    import xml from 'highlight.js/lib/languages/xml'
+    import html from 'highlight.js/lib/languages/xml'
+    import css from 'highlight.js/lib/languages/css'
+    import js from 'highlight.js/lib/languages/javascript'
+    import ts from 'highlight.js/lib/languages/typescript'
     import json from 'highlight.js/lib/languages/json'
-    import javascript from 'highlight.js/lib/languages/javascript'
-    import typescript from 'highlight.js/lib/languages/typescript'
+    import ini from "highlight.js/lib/languages/ini"
+    import shell from 'highlight.js/lib/languages/shell'
     import { darkmode } from '$stores/darkmode'
     import { theme } from '$stores/theme'
 
-    hljs.registerLanguage('shell', shell)
-    hljs.registerLanguage('xml', xml)
-    hljs.registerLanguage('html', xml)
+    hljs.registerLanguage('html', html)
+    hljs.registerLanguage('css', css)
+    hljs.registerLanguage('js', js)
+    hljs.registerLanguage('ts', ts)
     hljs.registerLanguage('json', json)
-    hljs.registerLanguage('javascript', javascript)
-    hljs.registerLanguage('typescript', typescript)
+    hljs.registerLanguage('ini', ini)
+    hljs.registerLanguage('shell', shell)
     storeHighlightJs.set(hljs)
 
     afterNavigate((event: AfterNavigate): void => {

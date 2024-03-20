@@ -74,15 +74,19 @@
 </div>
 
 <div class="card mx-auto mt-4 max-w-5xl px-10 py-8">
-    <div class="text-3xl underline">Chapter 1 - Create a new Project</div>
+    <div class="text-3xl underline">Chapter 1 - Create a new project</div>
     <div class="mt-6 text-lg">
         <div class="underline">Project Structure for this step</div>
-        <div class="ml-0">&#x3C;root&#x3E;</div>
+        <div class="ml-0"><b>&#x3C;root&#x3E;</b></div>
         <div class="ml-4">&#x2514; <b>src</b></div>
         <div class="ml-8">&#x2514; <b>routes</b></div>
         <div class="ml-12">&#x2514; +page.svelte</div>
         <div class="ml-8">&#x2502; app.d.ts</div>
         <div class="ml-8">&#x2514; app.html</div>
+        <div class="ml-4">&#x2514; <b>static</b></div>
+        <div class="ml-8">&#x2514; favicon.png</div>
+        <div class="ml-4">&#x2502; .gitattributes</div>
+        <div class="ml-4">&#x2502; .gitignore</div>
         <div class="ml-4">&#x2502; package.json</div>
         <div class="ml-4">&#x2502; svelte.config.js</div>
         <div class="ml-4">&#x2502; tsconfig.json</div>
@@ -90,7 +94,10 @@
     </div>
     <div class="mt-6">
         <div class="text-lg">&#x3C;root&#x3E;/package.json</div>
-        <CodeBlock language="json" code={`{\n    "name": "test-project",\n    "version": "0.0.0",\n    "type": "module",\n    "private": true,\n    "scripts": {\n        "dev": "vite dev",\n        "build": "vite build",\n        "preview": "vite preview",\n    },\n    "devDependencies": {\n        "@sveltejs/adapter-auto": "^3.1.1",\n        "@sveltejs/kit": "^2.5.4",\n        "@sveltejs/vite-plugin-svelte": "^3.0.2",\n        "svelte": "^4.2.12",\n        "tslib": "^2.6.2",\n        "typescript": "^5.4.3",\n        "vite": "^5.2.2"\n    }\n}`} />
+        <CodeBlock
+            language="json"
+            code={`{\n    "name": "test-project",\n    "version": "0.0.0",\n    "type": "module",\n    "private": true,\n    "scripts": {\n        "dev": "vite dev",\n        "build": "vite build",\n        "preview": "vite preview",\n    },\n    "devDependencies": {\n        "@sveltejs/adapter-auto": "^3.1.1",\n        "@sveltejs/kit": "^2.5.4",\n        "@sveltejs/vite-plugin-svelte": "^3.0.2",\n        "svelte": "^4.2.12",\n        "tslib": "^2.6.2",\n        "typescript": "^5.4.3",\n        "vite": "^5.2.2"\n    }\n}`}
+        />
     </div>
     <div class="mt-6">
         <div class="text-lg">&#x3C;root&#x3E;/vite.config.ts</div>
@@ -98,26 +105,71 @@
     </div>
     <div class="mt-6">
         <div class="text-lg">&#x3C;root&#x3E;/svelte.config.js</div>
-        <CodeBlock language="js" code={`import adapter from "@sveltejs/adapter-auto"\nimport { vitePreprocess } from "@sveltejs/vite-plugin-svelte"\n\n/** @type {import('@sveltejs/kit').Config} */\nconst config = {\npreprocess: vitePreprocess(),\n    kit: {\n        adapter: adapter()\n    }\n}\n\nexport default config`} />
+        <CodeBlock
+            language="js"
+            code={`import adapter from "@sveltejs/adapter-auto"\nimport { vitePreprocess } from "@sveltejs/vite-plugin-svelte"\n\n/** @type {import('@sveltejs/kit').Config} */\nconst config = {\npreprocess: vitePreprocess(),\n    kit: {\n        adapter: adapter()\n    }\n}\n\nexport default config`}
+        />
     </div>
     <div class="mt-6">
         <div class="text-lg">&#x3C;root&#x3E;/tsconfig.json</div>
-        <CodeBlock language="json" code={`{\n    "extends": "./.svelte-kit/tsconfig.json",\n    "compilerOptions": {\n        "allowJs": true,\n        "checkJs": true,\n        "esModuleInterop": true,"\n        forceConsistentCasingInFileNames": true,\n        "resolveJsonModule": true,\n        "skipLibCheck": true,\n        "sourceMap": true,\n        "strict": true,\n        "moduleResolution": "bundler"\n    }\n}`} />
+        <CodeBlock
+            language="json"
+            code={`{\n    "extends": "./.svelte-kit/tsconfig.json",\n    "compilerOptions": {\n        "allowJs": true,\n        "checkJs": true,\n        "esModuleInterop": true,"\n        forceConsistentCasingInFileNames": true,\n        "resolveJsonModule": true,\n        "skipLibCheck": true,\n        "sourceMap": true,\n        "strict": true,\n        "moduleResolution": "bundler"\n    }\n}`}
+        />
+    </div>
+    <div class="mt-6">
+        <div class="text-lg">&#x3C;root&#x3E;/src/app.html</div>
+        <CodeBlock
+            language="html"
+            code={`<!doctype html>\n<html lang="en">\n    <head>\n        <meta charset="utf-8" />\n        <meta name="viewport" content="width=device-width, initial-scale=1" />\n        <link rel="icon" href="%sveltekit.assets%/favicon.png" />\n        %sveltekit.head%\n    </head>\n    <body data-sveltekit-preload-data="hover">\n        <div style="display: contents">%sveltekit.body%</div>\n    </body>\n</html>`}
+        />
     </div>
     <div class="mt-6">
         <div class="text-lg">&#x3C;root&#x3E;/src/app.d.ts</div>
         <CodeBlock language="ts" code={`declare global {\n    namespace App {}\n}\n\nexport {}`} />
     </div>
     <div class="mt-6">
-        <div class="text-lg">&#x3C;root&#x3E;/src/app.html</div>
-        <CodeBlock language="html" code={`<!doctype html>\n<html lang="en">\n    <head>\n        <meta charset="utf-8" />\n        <meta name="viewport" content="width=device-width, initial-scale=1" />\n        <link rel="icon" href="%sveltekit.assets%/favicon.png" />\n        %sveltekit.head%\n    </head>\n    <body data-sveltekit-preload-data="hover">\n        <div style="display: contents">%sveltekit.body%</div>\n    </body>\n</html>`} />
-    </div>
-    <div class="mt-6">
         <div class="text-lg">&#x3C;root&#x3E;/src/routes/+page.svelte</div>
         <CodeBlock language="html" code={`<div>Hello World</div>`} />
     </div>
     <div class="mt-6">
+        <div class="text-lg">&#x3C;root&#x3E;/static/favicon.png</div>
+        <div>Put your title image to this path. (often used sizes are 64x64 or 128x128)</div>
+    </div>
+    <div class="mt-6">
+        <div class="text-lg">&#x3C;root&#x3E;/.gitattributes</div>
+        <CodeBlock language="ini" code={`* text=auto`} />
+    </div>
+    <div class="mt-6">
+        <div class="text-lg">&#x3C;root&#x3E;/.gitignore</div>
+        <CodeBlock language="ini" code={`# IDE Stuff\n.vscode/**\n.idea/**\n\n# Folders\nnode_modules/**\n.svelte-kit/**\nbuild/**\n\n# Files\n.env\npackage-lock.json\nyarn.lock\npnpm-lock.yaml`} />
+    </div>
+</div>
+
+<div class="card mx-auto mt-4 max-w-5xl px-10 py-8">
+    <div class="text-3xl underline">Chapter 2 - Customize the project settings</div>
+    <div class="mt-6 text-lg">
+        <div class="underline">Project Structure for this step</div>
+        <div class="ml-0"><b>&#x3C;root&#x3E;</b></div>
+        <div class="ml-4">&#x2502; package.json</div>
+        <div class="ml-4">&#x2502; svelte.config.js</div>
+        <div class="ml-4">&#x2514; vite.config.ts</div>
+    </div>
+    <div class="mt-6">
+        <div class="text-lg">&#x3C;root&#x3E;/package.json</div>
+        <div>remove the @sveltejs/adapter-auto and add instead @sveltejs/adapter-node</div>
+        <CodeBlock language="json" code={`{\n    "scripts": {\n        "start": "HOST=0.0.0.0 PORT=3000 node -r dotenv/config ./build"\n    }\n    "dependencies": {\n        "dotenv": "^16.4.5"\n    },\n    "devDependencies": {\n        "@sveltejs/adapter-node": "^5.0.1"\n    }\n}`} />
+    </div>
+    <div class="mt-6">
+        <div class="text-lg">&#x3C;root&#x3E;/svelte.config.js</div>
+        <CodeBlock language="ts" code={`import adapter from "@sveltejs/adapter-node"\nimport { vitePreprocess } from "@sveltejs/vite-plugin-svelte"\n\n/** @type {import("@sveltejs/kit").Config} */\nconst config = {\n    preprocess: vitePreprocess(),\n    kit: {\n        adapter: adapter({\n            build: "./build",\n            precompress: true,\n            envPrefix: ""\n        }),\n        alias: {\n            $server: "./src/lib/server",\n            $components: "./src/lib/components",\n            $utils: "./src/lib/utils",\n            $images: "./src/lib/images",\n            $stores: "./src/lib/stores",\n            $types: "./src/lib/types"\n        }\n    }\n}\nexport default config`} />
+    </div>
+    <div class="mt-6">
+        <div class="text-lg">&#x3C;root&#x3E;/vite.config.ts</div>
+        <CodeBlock language="ts" code={`import { defineConfig } from "vite"\nimport type { CommonServerOptions } from "vite"\nimport { sveltekit } from "@sveltejs/kit/vite"\nimport { enhancedImages } from "@sveltejs/enhanced-img"\nimport mkcert from "vite-plugin-mkcert"\n\nconst serverConfig: CommonServerOptions = {\n    https: true,\n    host: "localhost",\n    port: 3000,\n    strictPort: true,\n    proxy: {}\n}\n\nexport default defineConfig({\n    server: serverConfig,\n    preview: serverConfig,\n    plugins: [sveltekit(), enhancedImages(), mkcert()]\n})`} />
+    </div>
+    <div class="mt-6">
         <div class="text-lg"></div>
-        <CodeBlock language="typescript" code={``} />
+        <CodeBlock language="ts" code={``} />
     </div>
 </div>
