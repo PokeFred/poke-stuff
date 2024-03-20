@@ -7,10 +7,19 @@
     import { AppShell, storeHighlightJs } from '@skeletonlabs/skeleton'
     import hljs from 'highlight.js/lib/core'
     import shell from 'highlight.js/lib/languages/shell'
+    import xml from 'highlight.js/lib/languages/xml'
+    import json from 'highlight.js/lib/languages/json'
+    import javascript from 'highlight.js/lib/languages/javascript'
+    import typescript from 'highlight.js/lib/languages/typescript'
     import { darkmode } from '$stores/darkmode'
     import { theme } from '$stores/theme'
 
     hljs.registerLanguage('shell', shell)
+    hljs.registerLanguage('xml', xml)
+    hljs.registerLanguage('html', xml)
+    hljs.registerLanguage('json', json)
+    hljs.registerLanguage('javascript', javascript)
+    hljs.registerLanguage('typescript', typescript)
     storeHighlightJs.set(hljs)
 
     afterNavigate((event: AfterNavigate): void => {
