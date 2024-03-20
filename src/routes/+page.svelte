@@ -64,3 +64,11 @@
         <CodeBlock language="shell" code={`# File: https://code.visualstudio.com/Download\n$ sudo apt install ./<file>.deb`} />
     </div>
 </div>
+
+<div class="card mx-auto mt-4 max-w-5xl px-10 py-8">
+    <div class="text-3xl underline">Requirements</div>
+    <div>- NodeJS v21 [<a href="https://nodejs.org/en/download" target="_blank" class="text-tertiary-400">Link</a>] (lower versions supported too)</div>
+    <div>- NPM (included in NodeJS)</div>
+    <div>- Editor/Browser: VSCode (recommed free IDE) [<a href="https://code.visualstudio.com/" target="_blank" class="text-tertiary-400">Link</a>]</div>
+    <div>- Browser (any browser works, but Chrome/Firefox have great DevTools for debugging)</div>
+</div>
