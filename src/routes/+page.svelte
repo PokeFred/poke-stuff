@@ -158,15 +158,24 @@
     <div class="mt-6">
         <div class="text-lg">&#x3C;root&#x3E;/package.json</div>
         <div>remove the @sveltejs/adapter-auto and add instead @sveltejs/adapter-node</div>
-        <CodeBlock language="json" code={`{\n    "scripts": {\n        "start": "HOST=0.0.0.0 PORT=3000 node -r dotenv/config ./build"\n    }\n    "dependencies": {\n        "dotenv": "^16.4.5"\n    },\n    "devDependencies": {\n        "@sveltejs/adapter-node": "^5.0.1"\n    }\n}`} />
+        <CodeBlock
+            language="json"
+            code={`{\n    "scripts": {\n        "start": "HOST=0.0.0.0 PORT=3000 node -r dotenv/config ./build"\n    }\n    "dependencies": {\n        "dotenv": "^16.4.5"\n    },\n    "devDependencies": {\n        "@sveltejs/adapter-node": "^5.0.1"\n    }\n}`}
+        />
     </div>
     <div class="mt-6">
         <div class="text-lg">&#x3C;root&#x3E;/svelte.config.js</div>
-        <CodeBlock language="ts" code={`import adapter from "@sveltejs/adapter-node"\nimport { vitePreprocess } from "@sveltejs/vite-plugin-svelte"\n\n/** @type {import("@sveltejs/kit").Config} */\nconst config = {\n    preprocess: vitePreprocess(),\n    kit: {\n        adapter: adapter({\n            build: "./build",\n            precompress: true,\n            envPrefix: ""\n        }),\n        alias: {\n            $server: "./src/lib/server",\n            $components: "./src/lib/components",\n            $utils: "./src/lib/utils",\n            $images: "./src/lib/images",\n            $stores: "./src/lib/stores",\n            $types: "./src/lib/types"\n        }\n    }\n}\nexport default config`} />
+        <CodeBlock
+            language="ts"
+            code={`import adapter from "@sveltejs/adapter-node"\nimport { vitePreprocess } from "@sveltejs/vite-plugin-svelte"\n\n/** @type {import("@sveltejs/kit").Config} */\nconst config = {\n    preprocess: vitePreprocess(),\n    kit: {\n        adapter: adapter({\n            build: "./build",\n            precompress: true,\n            envPrefix: ""\n        }),\n        alias: {\n            $server: "./src/lib/server",\n            $components: "./src/lib/components",\n            $utils: "./src/lib/utils",\n            $images: "./src/lib/images",\n            $stores: "./src/lib/stores",\n            $types: "./src/lib/types"\n        }\n    }\n}\nexport default config`}
+        />
     </div>
     <div class="mt-6">
         <div class="text-lg">&#x3C;root&#x3E;/vite.config.ts</div>
-        <CodeBlock language="ts" code={`import { defineConfig } from "vite"\nimport type { CommonServerOptions } from "vite"\nimport { sveltekit } from "@sveltejs/kit/vite"\nimport { enhancedImages } from "@sveltejs/enhanced-img"\nimport mkcert from "vite-plugin-mkcert"\n\nconst serverConfig: CommonServerOptions = {\n    https: true,\n    host: "localhost",\n    port: 3000,\n    strictPort: true,\n    proxy: {}\n}\n\nexport default defineConfig({\n    server: serverConfig,\n    preview: serverConfig,\n    plugins: [sveltekit(), enhancedImages(), mkcert()]\n})`} />
+        <CodeBlock
+            language="ts"
+            code={`import { defineConfig } from "vite"\nimport type { CommonServerOptions } from "vite"\nimport { sveltekit } from "@sveltejs/kit/vite"\nimport { enhancedImages } from "@sveltejs/enhanced-img"\nimport mkcert from "vite-plugin-mkcert"\n\nconst serverConfig: CommonServerOptions = {\n    https: true,\n    host: "localhost",\n    port: 3000,\n    strictPort: true,\n    proxy: {}\n}\n\nexport default defineConfig({\n    server: serverConfig,\n    preview: serverConfig,\n    plugins: [sveltekit(), enhancedImages(), mkcert()]\n})`}
+        />
     </div>
 </div>
 

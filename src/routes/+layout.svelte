@@ -11,8 +11,8 @@
     import js from 'highlight.js/lib/languages/javascript'
     import ts from 'highlight.js/lib/languages/typescript'
     import json from 'highlight.js/lib/languages/json'
-    import ini from "highlight.js/lib/languages/ini"
-    import dockerfile from "highlight.js/lib/languages/dockerfile"
+    import ini from 'highlight.js/lib/languages/ini'
+    import dockerfile from 'highlight.js/lib/languages/dockerfile'
     import shell from 'highlight.js/lib/languages/shell'
     import { darkmode } from '$stores/darkmode'
     import { theme } from '$stores/theme'
