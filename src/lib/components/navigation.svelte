@@ -12,6 +12,6 @@
     <h2 class="mt-4 p-4">Chapter</h2>
     <hr />
     <ul class="mt-2">
-        <li><button on:click={() => goto('/chapter/x-x-setup-deployment-server')}>x-x Setup Deployment Server</button></li>
+        <li><button on:click={() => goto('/chapter/x-x-setup-deployment-server')}>x.x Setup Deployment Server</button></li>
     </ul>
 </nav>
