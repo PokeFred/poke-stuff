@@ -59,14 +59,15 @@
 <svelte:window bind:innerWidth={$pageWidth} />
 
 <custom-theming-element data-theme={$theme} class={$darkmode ? 'dark' : 'light'}>
-    <Drawer width="w-64 sm:w-0" bgDrawer="text-surface-900-50-token bg-surface-100-800-token">
+    <Drawer width="w-80 sm:w-0" bgDrawer="text-surface-900-50-token bg-surface-100-800-token">
+        <button on:click={() => drawerStore.close()} class="variant-filled btn absolute right-4 top-4 px-8">Close</button>
         <Navigation />
     </Drawer>
 
     <Toast />
 
     <AppShell
-        slotSidebarLeft="w-0 sm:w-64 text-surface-900-50-token bg-surface-100-800-token"
+        slotSidebarLeft="w-0 sm:w-80 text-surface-900-50-token bg-surface-100-800-token"
         slotPageHeader="text-surface-900-50-token bg-surface-100-800-token sticky top-0 z-10 border-l-0 sm:border-l border-surface-200-700-token"
         slotPageContent="text-surface-900-50-token bg-surface-50-900-token"
         regionPage="relative"
