@@ -2,9 +2,12 @@
     import '../app.css'
     import '@fontsource-variable/nunito'
     import 'highlight.js/styles/github-dark.css'
+    import { writable } from 'svelte/store'
+    import type { Writable } from 'svelte/store'
     import { afterNavigate } from '$app/navigation'
     import type { AfterNavigate } from '@sveltejs/kit'
-    import { AppShell, storeHighlightJs } from '@skeletonlabs/skeleton'
+    import { initializeStores, Drawer, getDrawerStore, Toast, getToastStore, storeHighlightJs, AppShell, AppBar } from '@skeletonlabs/skeleton'
+    import type { DrawerStore, ToastStore } from '@skeletonlabs/skeleton'
     import hljs from 'highlight.js/lib/core'
     import html from 'highlight.js/lib/languages/xml'
     import css from 'highlight.js/lib/languages/css'
@@ -14,8 +17,13 @@
     import ini from 'highlight.js/lib/languages/ini'
     import dockerfile from 'highlight.js/lib/languages/dockerfile'
     import shell from 'highlight.js/lib/languages/shell'
+    import Navigation from '$components/navigation.svelte'
     import { darkmode } from '$stores/darkmode'
     import { theme } from '$stores/theme'
+
+    initializeStores()
+    const drawerStore: DrawerStore = getDrawerStore()
+    const toastStore: ToastStore = getToastStore()
 
     hljs.registerLanguage('html', html)
     hljs.registerLanguage('css', css)
@@ -35,13 +43,64 @@
             elementPage.scrollTop = 0
         }
     })
+
+    const pageWidth: Writable<number> = writable<number>(0)
+    pageWidth.subscribe((value: number): void => {
+        if (value < 640) return
+
+        drawerStore.close()
+    })
 </script>
 
+<svelte:head>
+    <title>PokeStuff</title>
+</svelte:head>
+
+<svelte:window bind:innerWidth={$pageWidth} />
+
 <custom-theming-element data-theme={$theme} class={$darkmode ? 'dark' : 'light'}>
-    <AppShell slotPageContent="text-surface-900-50-token bg-surface-50-900-token">
+    <Drawer width="w-64 sm:w-0" bgDrawer="text-surface-900-50-token bg-surface-100-800-token">
+        <Navigation />
+    </Drawer>
+
+    <Toast />
+
+    <AppShell
+        slotSidebarLeft="w-0 sm:w-64 text-surface-900-50-token bg-surface-100-800-token"
+        slotPageHeader="text-surface-900-50-token bg-surface-100-800-token sticky top-0 z-10 border-l-0 sm:border-l border-surface-200-700-token"
+        slotPageContent="text-surface-900-50-token bg-surface-50-900-token"
+        regionPage="relative"
+    >
+        <!-- Sidebar -->
+        <svelte:fragment slot="sidebarLeft">
+            <Navigation />
+        </svelte:fragment>
+
+        <!-- Header -->
+        <svelte:fragment slot="pageHeader">
+            <AppBar>
+                <svelte:fragment slot="lead">
+                    {#if $pageWidth < 640}
+                        <button class="variant-filled btn px-8" on:click={() => drawerStore.open()}>Open Sidebar</button>
+                    {/if}
+                </svelte:fragment>
+                <div>PokeStuff</div>
+            </AppBar>
+        </svelte:fragment>
+
         <!-- Main Content -->
         <div class="p-4">
-            <slot />
+            <div class="card mx-auto max-w-5xl px-10 py-8">
+                <slot />
+
+                <!-- Footer -->
+                <!--
+                <div class="mt-4">
+                    <hr />
+                    <div class="mt-2">Hello World</div>
+                </div>
+                -->
+            </div>
         </div>
     </AppShell>
 </custom-theming-element>
